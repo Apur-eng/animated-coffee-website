@@ -1,0 +1,22 @@
+# Node / build tools (no longer used — pure HTML site)
+node_modules/
+dist/
+.cache/
+
+# Vite / React artifacts (legacy, already deleted)
+*.local
+vite.config.*
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Vercel
+.vercel/
