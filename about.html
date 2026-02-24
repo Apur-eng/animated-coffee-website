@@ -1,104 +1,680 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>About - Andean Brews</title>
-  <meta name="description" content="The story of Andean Brews - premium single-origin coffee born in the Colombian highlands."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --dark:#0d0505;--dark2:#1a0a0a;--brown:#2d1515;--brown2:#4b2e2e;--brown3:#8b5555;--gold:#c9a84c;--text:#f0e0e0;--text2:#dbbfbf;--text3:#c49898; }
-    html { scroll-behavior: smooth; }
-    body { font-family:'Poppins',sans-serif; background:var(--dark2); color:var(--text); overflow-x:hidden; }
-    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--brown2);border-radius:3px}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;transition:background .5s,padding .4s,box-shadow .4s}
-    nav.scrolled{background:rgba(13,5,5,.96);backdrop-filter:blur(12px);padding:.85rem 4rem;box-shadow:0 2px 32px rgba(0,0,0,.5)}
-    .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
-    .nav-logo-icon{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--brown3));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:#fff}
-    .nav-logo-text{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);transition:color .3s}
-    .nav-logo:hover .nav-logo-text{color:var(--gold)}
-    .nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
-    .nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,224,224,.8);text-decoration:none;position:relative;transition:color .3s}
-    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
-    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
-    .nav-links a:hover::after,.nav-links a.active::after{width:100%}
-    .nav-cta{padding:.5rem 1.3rem!important;border-radius:999px;border:1px solid var(--gold);color:var(--gold)!important;transition:background .3s,color .3s!important}
-    .nav-cta::after{display:none!important}
-    .nav-cta:hover{background:var(--gold)!important;color:var(--dark)!important}
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-    .hamburger span{display:block;width:24px;height:2px;background:var(--text)}
-    .mobile-menu{display:none;flex-direction:column;gap:1.2rem;background:rgba(13,5,5,.98);border-top:1px solid var(--brown);padding:1.5rem 2rem}
-    .mobile-menu.open{display:flex}
-    .mobile-menu a{font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);text-decoration:none}
-    .fade-up{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
-    .fade-up.visible{opacity:1;transform:translateY(0)}
-    .fade-up.d1{transition-delay:.1s}.fade-up.d2{transition-delay:.2s}.fade-up.d3{transition-delay:.3s}.fade-up.d4{transition-delay:.4s}
-    footer{background:var(--dark);border-top:1px solid var(--brown);padding:4rem 2rem 2rem}
-    .footer-inner{max-width:1200px;margin:0 auto}
-    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
-    .footer-brand-logo{display:flex;align-items:center;gap:.75rem;margin-bottom:1.1rem}
-    .footer-brand-logo .icon{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--brown3));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;color:#fff}
-    .footer-brand-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text)}
-    .footer-desc{font-size:.8rem;color:var(--brown3);line-height:1.75;max-width:280px;margin-bottom:1.2rem}
-    .footer-socials{display:flex;gap:.75rem}
-    .social-icon{width:34px;height:34px;border-radius:50%;border:1px solid var(--brown2);display:flex;align-items:center;justify-content:center;color:var(--brown3);text-decoration:none;transition:border-color .3s,color .3s}
-    .social-icon:hover{border-color:var(--gold);color:var(--gold)}
-    .social-icon svg{width:14px;height:14px}
-    .footer-col h4{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text);margin-bottom:1.2rem}
-    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
-    .footer-col ul li a,.footer-col ul li span{font-size:.82rem;color:var(--brown3);text-decoration:none;transition:color .3s}
-    .footer-col ul li a:hover{color:var(--gold)}
-    .footer-bottom{border-top:1px solid var(--brown);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center}
-    .footer-bottom p{font-size:.75rem;color:var(--brown2)}
-    @media(max-width:900px){nav{padding:1.2rem 2rem}nav.scrolled{padding:.75rem 2rem}.nav-links{display:none}.hamburger{display:flex}.footer-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:600px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:.5rem;text-align:center}}
 
-    .page-hero{position:relative;min-height:75vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8rem 2rem 5rem}
-    .page-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1400&q=80');background-size:cover;background-position:center}
-    .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,5,5,.75) 0%,rgba(26,10,10,.65) 50%,var(--dark2) 100%)}
-    .page-hero-content{position:relative;z-index:2;text-align:center;max-width:720px}
-    .eyebrow{font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block}
-    .page-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;color:#fff;margin-bottom:1.5rem;line-height:1.1}
-    .divider{width:48px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 1.5rem}
-    .page-desc{font-size:1rem;color:var(--text2);line-height:1.8}
-    section{padding:5rem 2rem}.inner{max-width:1200px;margin:0 auto}
-    .sec-header{text-align:center;margin-bottom:3rem}
-    .sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--text);margin-bottom:.75rem}
-    #values{background:var(--dark2)}
-    .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-    .value-card{background:linear-gradient(to bottom,var(--brown),var(--dark2));border:1px solid rgba(75,46,46,.4);border-radius:1.2rem;padding:2.2rem 2rem;text-align:center;transition:border-color .4s,transform .4s}
-    .value-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-4px)}
-    .value-icon{font-size:2.5rem;margin-bottom:1rem}
-    .value-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);margin-bottom:.6rem}
-    .value-desc{font-size:.82rem;color:var(--brown3);line-height:1.75}
-    #story{background:var(--dark)}
-    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-    .story-img{width:100%;height:480px;object-fit:cover;border-radius:1.2rem}
-    .story-body h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.5rem);color:var(--text);margin-bottom:1.2rem;line-height:1.2}
-    .story-body p{font-size:.88rem;color:var(--text3);line-height:1.85;margin-bottom:1rem}
-    .stat-row{display:flex;gap:2rem;margin-top:2rem}
-    .stat-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-weight:700;display:block}
-    .stat-label{font-size:.72rem;color:var(--brown3);letter-spacing:.1em;text-transform:uppercase}
-    #reviews{background:var(--dark)}
-    .reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
-    .review-card{background:linear-gradient(to bottom,var(--brown),var(--dark2));border:1px solid rgba(75,46,46,.4);border-radius:1.2rem;padding:1.8rem;position:relative;overflow:hidden;transition:border-color .4s}
-    .review-card:hover{border-color:rgba(201,168,76,.3)}
-    .review-quote{position:absolute;top:.5rem;right:1rem;font-family:'Playfair Display',serif;font-size:6rem;color:rgba(201,168,76,.07);line-height:1;pointer-events:none}
-    .stars{display:flex;gap:3px;margin-bottom:.85rem}
-    .stars svg{width:14px;height:14px;color:var(--gold)}
-    .review-text{font-size:.85rem;color:var(--text2);line-height:1.75;font-style:italic;margin-bottom:1.2rem}
-    .reviewer{display:flex;align-items:center;gap:.75rem}
-    .reviewer-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--brown3));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;color:#fff;flex-shrink:0}
-    .reviewer-name{font-size:.85rem;font-weight:600;color:var(--text)}
-    .reviewer-role{font-size:.72rem;color:var(--brown3)}
-    @media(max-width:900px){.values-grid{grid-template-columns:1fr}.story-grid{grid-template-columns:1fr}.story-img{height:280px}.reviews-grid{grid-template-columns:1fr}}
-</style>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>About - Andean Brews</title>
+  <meta name="description"
+    content="The story of Andean Brews - premium single-origin coffee born in the Colombian highlands." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --dark: #0d0505;
+      --dark2: #1a0a0a;
+      --brown: #2d1515;
+      --brown2: #4b2e2e;
+      --brown3: #8b5555;
+      --gold: #c9a84c;
+      --text: #f0e0e0;
+      --text2: #dbbfbf;
+      --text3: #c49898;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark2);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--dark)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--brown2);
+      border-radius: 3px
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 4rem;
+      transition: background .5s, padding .4s, box-shadow .4s
+    }
+
+    nav.scrolled {
+      background: rgba(13, 5, 5, .96);
+      backdrop-filter: blur(12px);
+      padding: .85rem 4rem;
+      box-shadow: 0 2px 32px rgba(0, 0, 0, .5)
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      text-decoration: none
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--brown3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .8rem;
+      color: #fff
+    }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      transition: color .3s
+    }
+
+    .nav-logo:hover .nav-logo-text {
+      color: var(--gold)
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(240, 224, 224, .8);
+      text-decoration: none;
+      position: relative;
+      transition: color .3s
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width .3s
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold)
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%
+    }
+
+    .nav-cta {
+      padding: .5rem 1.3rem !important;
+      border-radius: 999px;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      transition: background .3s, color .3s !important
+    }
+
+    .nav-cta::after {
+      display: none !important
+    }
+
+    .nav-cta:hover {
+      background: var(--gold) !important;
+      color: var(--dark) !important
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text)
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 1.2rem;
+      background: rgba(13, 5, 5, .98);
+      border-top: 1px solid var(--brown);
+      padding: 1.5rem 2rem
+    }
+
+    .mobile-menu.open {
+      display: flex
+    }
+
+    .mobile-menu a {
+      font-size: .85rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text2);
+      text-decoration: none
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .fade-up.d1 {
+      transition-delay: .1s
+    }
+
+    .fade-up.d2 {
+      transition-delay: .2s
+    }
+
+    .fade-up.d3 {
+      transition-delay: .3s
+    }
+
+    .fade-up.d4 {
+      transition-delay: .4s
+    }
+
+    footer {
+      background: var(--dark);
+      border-top: 1px solid var(--brown);
+      padding: 4rem 2rem 2rem
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem
+    }
+
+    .footer-brand-logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.1rem
+    }
+
+    .footer-brand-logo .icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--brown3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .75rem;
+      color: #fff
+    }
+
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text)
+    }
+
+    .footer-desc {
+      font-size: .8rem;
+      color: var(--brown3);
+      line-height: 1.75;
+      max-width: 280px;
+      margin-bottom: 1.2rem
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: .75rem
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--brown2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown3);
+      text-decoration: none;
+      transition: border-color .3s, color .3s
+    }
+
+    .social-icon:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .social-icon svg {
+      width: 14px;
+      height: 14px
+    }
+
+    .footer-col h4 {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 1.2rem
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem
+    }
+
+    .footer-col ul li a,
+    .footer-col ul li span {
+      font-size: .82rem;
+      color: var(--brown3);
+      text-decoration: none;
+      transition: color .3s
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--gold)
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--brown);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .footer-bottom p {
+      font-size: .75rem;
+      color: var(--brown2)
+    }
+
+    @media(max-width:900px) {
+      nav {
+        padding: 1.2rem 2rem
+      }
+
+      nav.scrolled {
+        padding: .75rem 2rem
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .hamburger {
+        display: flex
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:600px) {
+      .footer-grid {
+        grid-template-columns: 1fr
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: .5rem;
+        text-align: center
+      }
+    }
+
+    .page-hero {
+      position: relative;
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 8rem 2rem 5rem
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1400&q=80');
+      background-size: cover;
+      background-position: center
+    }
+
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(13, 5, 5, .75) 0%, rgba(26, 10, 10, .65) 50%, var(--dark2) 100%)
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 720px
+    }
+
+    .eyebrow {
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: block
+    }
+
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      line-height: 1.1
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 1.5rem
+    }
+
+    .page-desc {
+      font-size: 1rem;
+      color: var(--text2);
+      line-height: 1.8
+    }
+
+    section {
+      padding: 5rem 2rem
+    }
+
+    .inner {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .sec-header {
+      text-align: center;
+      margin-bottom: 3rem
+    }
+
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--text);
+      margin-bottom: .75rem
+    }
+
+    #values {
+      background: var(--dark2)
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem
+    }
+
+    .value-card {
+      background: linear-gradient(to bottom, var(--brown), var(--dark2));
+      border: 1px solid rgba(75, 46, 46, .4);
+      border-radius: 1.2rem;
+      padding: 2.2rem 2rem;
+      text-align: center;
+      transition: border-color .4s, transform .4s
+    }
+
+    .value-card:hover {
+      border-color: rgba(201, 168, 76, .35);
+      transform: translateY(-4px)
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem
+    }
+
+    .value-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: .6rem
+    }
+
+    .value-desc {
+      font-size: .82rem;
+      color: var(--brown3);
+      line-height: 1.75
+    }
+
+    #story {
+      background: var(--dark)
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center
+    }
+
+    .story-img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 1.2rem
+    }
+
+    .story-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      line-height: 1.2
+    }
+
+    .story-body p {
+      font-size: .88rem;
+      color: var(--text3);
+      line-height: 1.85;
+      margin-bottom: 1rem
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      font-weight: 700;
+      display: block
+    }
+
+    .stat-label {
+      font-size: .72rem;
+      color: var(--brown3);
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    #reviews {
+      background: var(--dark)
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem
+    }
+
+    .review-card {
+      background: linear-gradient(to bottom, var(--brown), var(--dark2));
+      border: 1px solid rgba(75, 46, 46, .4);
+      border-radius: 1.2rem;
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .4s
+    }
+
+    .review-card:hover {
+      border-color: rgba(201, 168, 76, .3)
+    }
+
+    .review-quote {
+      position: absolute;
+      top: .5rem;
+      right: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      color: rgba(201, 168, 76, .07);
+      line-height: 1;
+      pointer-events: none
+    }
+
+    .stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: .85rem
+    }
+
+    .stars svg {
+      width: 14px;
+      height: 14px;
+      color: var(--gold)
+    }
+
+    .review-text {
+      font-size: .85rem;
+      color: var(--text2);
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: 1.2rem
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: .75rem
+    }
+
+    .reviewer-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--brown3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .75rem;
+      color: #fff;
+      flex-shrink: 0
+    }
+
+    .reviewer-name {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--text)
+    }
+
+    .reviewer-role {
+      font-size: .72rem;
+      color: var(--brown3)
+    }
+
+    @media(max-width:900px) {
+      .values-grid {
+        grid-template-columns: 1fr
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr
+      }
+
+      .story-img {
+        height: 280px
+      }
+
+      .reviews-grid {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
 </head>
+
 <body>
   <nav id="navbar">
-    <a href="index.html" class="nav-logo"><div class="nav-logo-icon">AB</div><span class="nav-logo-text">Andean Brews</span></a>
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">AB</div><span class="nav-logo-text">Andean Brews</span>
+    </a>
     <ul class="nav-links">
       <li><a href="index.html" class="">Home</a></li>
       <li><a href="about.html" class="active">About</a></li>
@@ -111,81 +687,239 @@
     <a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a>
   </div>
   <div class="page-hero">
-    <div class="page-hero-bg"></div><div class="page-hero-overlay"></div>
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
       <span class="eyebrow">Our Story</span>
       <h1 class="page-title">Born in the Mountains</h1>
       <div class="divider"></div>
-      <p class="page-desc">Andean Brews was founded in 2019 by two friends who found their calling on the misty slopes of the Colombian Andes. What began as a quest for the perfect cup evolved into a sanctuary for those who believe coffee is more than a beverage.</p>
+      <p class="page-desc">Andean Brews was founded in 2019 by two friends who found their calling on the misty slopes
+        of the Colombian Andes. What began as a quest for the perfect cup evolved into a sanctuary for those who believe
+        coffee is more than a beverage.</p>
     </div>
   </div>
-  <section id="values"><div class="inner">
-    <div class="sec-header fade-up"><span class="eyebrow">What drives us</span><h2 class="sec-title">Our Philosophy</h2><div class="divider"></div></div>
-    <div class="values-grid">
-      <div class="value-card fade-up d1"><div class="value-icon">&#127807;</div><h3 class="value-title">Origin First</h3><p class="value-desc">We partner directly with 12 family farms across Colombia, Peru, and Bolivia - ensuring fair wages, traceability, and altitude-grown character in every bag.</p></div>
-      <div class="value-card fade-up d2"><div class="value-icon">&#128300;</div><h3 class="value-title">Precision Craft</h3><p class="value-desc">Our baristas train for 6 months before pulling their first public shot. Every extraction is dialed in by grind, pressure, temperature, and time.</p></div>
-      <div class="value-card fade-up d3"><div class="value-icon">&#127956;</div><h3 class="value-title">Highland Soul</h3><p class="value-desc">The altitude is embedded in our philosophy. We aim for rarefied experiences and honest, memorable coffee born from patience and craft.</p></div>
-    </div>
-  </div></section>
-  <section id="story"><div class="inner"><div class="story-grid">
-    <div class="fade-up"><img class="story-img" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80" alt="Andean Brews interior" loading="lazy"/></div>
-    <div class="story-body fade-up d2">
-      <span class="eyebrow">The Craft</span>
-      <h2>Quality beans, uncompromising ambiance</h2>
-      <p>Every bean we source is hand-selected from farms above 1,800 meters elevation, where cool air, volcanic soil, and centuries of tradition converge to produce coffees unlike any other.</p>
-      <p>We roast in small batches, weekly, to preserve the terroir character of each origin. Our Andean Slow roast profile extends development time to unlock complex florals without bitterness.</p>
-      <div class="stat-row">
-        <div class="stat"><span class="stat-num">12</span><span class="stat-label">Partner Farms</span></div>
-        <div class="stat"><span class="stat-num">1800m</span><span class="stat-label">Avg. Altitude</span></div>
-        <div class="stat"><span class="stat-num">6yr</span><span class="stat-label">In Business</span></div>
+  <section id="values">
+    <div class="inner">
+      <div class="sec-header fade-up"><span class="eyebrow">What drives us</span>
+        <h2 class="sec-title">Our Philosophy</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-up d1">
+          <div class="value-icon">&#127807;</div>
+          <h3 class="value-title">Origin First</h3>
+          <p class="value-desc">We partner directly with 12 family farms across Colombia, Peru, and Bolivia - ensuring
+            fair wages, traceability, and altitude-grown character in every bag.</p>
+        </div>
+        <div class="value-card fade-up d2">
+          <div class="value-icon">&#128300;</div>
+          <h3 class="value-title">Precision Craft</h3>
+          <p class="value-desc">Our baristas train for 6 months before pulling their first public shot. Every extraction
+            is dialed in by grind, pressure, temperature, and time.</p>
+        </div>
+        <div class="value-card fade-up d3">
+          <div class="value-icon">&#127956;</div>
+          <h3 class="value-title">Highland Soul</h3>
+          <p class="value-desc">The altitude is embedded in our philosophy. We aim for rarefied experiences and honest,
+            memorable coffee born from patience and craft.</p>
+        </div>
       </div>
     </div>
-  </div></div></section>
-  <section id="reviews"><div class="inner">
-    <div class="sec-header fade-up"><span class="eyebrow">Testimonials</span><h2 class="sec-title">What Our Guests Say</h2><div class="divider"></div></div>
-    <div class="reviews-grid">
-      <div class="review-card fade-up d1">
-        <div class="review-quote">"</div>
-        <div class="stars"><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-        <p class="review-text">"The espresso here transported me back to a misty morning in Salento. Exceptional balance of terroir and craft, unlike anything I've tasted in New York."</p>
-        <div class="reviewer"><div class="reviewer-avatar">SR</div><div><p class="reviewer-name">Sofia Reyes</p><p class="reviewer-role">Food Critic, Bogota</p></div></div>
-      </div>
-      <div class="review-card fade-up d1">
-        <div class="review-quote">"</div>
-        <div class="stars"><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-        <p class="review-text">"I've traveled across three continents for a great cup. Andean Brews stands alone. The cold brew is genuinely life-changing."</p>
-        <div class="reviewer"><div class="reviewer-avatar">JW</div><div><p class="reviewer-name">James Whitfield</p><p class="reviewer-role">Coffee Enthusiast, London</p></div></div>
-      </div>
-      <div class="review-card fade-up d1">
-        <div class="review-quote">"</div>
-        <div class="stars"><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-        <p class="review-text">"The ambiance, the service, and that Iced Caramel. I come here every time I visit. It's curated excellence."</p>
-        <div class="reviewer"><div class="reviewer-avatar">PN</div><div><p class="reviewer-name">Priya Nair</p><p class="reviewer-role">Architect, Mumbai</p></div></div>
-      </div>
-      <div class="review-card fade-up d1">
-        <div class="review-quote">"</div>
-        <div class="stars"><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-        <p class="review-text">"Shot an entire project here. The light, the aroma, the cappuccino art. It's the most visually striking cafe I've ever worked in."</p>
-        <div class="reviewer"><div class="reviewer-avatar">MC</div><div><p class="reviewer-name">Marcus Chen</p><p class="reviewer-role">Photographer, New York</p></div></div>
-      </div></div>
-  </div></section>
-  <footer><div class="footer-inner"><div class="footer-grid">
-    <div>
-      <div class="footer-brand-logo"><div class="icon">AB</div><span class="footer-brand-name">Andean Brews</span></div>
-      <p class="footer-desc">Born in the highlands of the Andes. Every cup is a journey through altitude-grown beans, crafted with passion.</p>
-      <div class="footer-socials">
-        <a href="#" class="social-icon" aria-label="Instagram"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-        <a href="#" class="social-icon" aria-label="Facebook"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+  </section>
+  <section id="story">
+    <div class="inner">
+      <div class="story-grid">
+        <div class="fade-up"><img class="story-img"
+            src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80" alt="Andean Brews interior"
+            loading="lazy" /></div>
+        <div class="story-body fade-up d2">
+          <span class="eyebrow">The Craft</span>
+          <h2>Quality beans, uncompromising ambiance</h2>
+          <p>Every bean we source is hand-selected from farms above 1,800 meters elevation, where cool air, volcanic
+            soil, and centuries of tradition converge to produce coffees unlike any other.</p>
+          <p>We roast in small batches, weekly, to preserve the terroir character of each origin. Our Andean Slow roast
+            profile extends development time to unlock complex florals without bitterness.</p>
+          <div class="stat-row">
+            <div class="stat"><span class="stat-num">12</span><span class="stat-label">Partner Farms</span></div>
+            <div class="stat"><span class="stat-num">1800m</span><span class="stat-label">Avg. Altitude</span></div>
+            <div class="stat"><span class="stat-num">6yr</span><span class="stat-label">In Business</span></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="footer-col"><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="footer-col"><h4>Hours</h4><ul><li><span>Mon-Fri 7am-10pm</span></li><li><span>Saturday 8am-11pm</span></li><li><span>Sunday 9am-9pm</span></li></ul></div>
-  </div><div class="footer-bottom"><p>2026 Andean Brews. All rights reserved.</p><p>Crafted with passion</p></div></div></footer>
+  </section>
+  <section id="reviews">
+    <div class="inner">
+      <div class="sec-header fade-up"><span class="eyebrow">Testimonials</span>
+        <h2 class="sec-title">What Our Guests Say</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card fade-up d1">
+          <div class="review-quote">"</div>
+          <div class="stars"><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg></div>
+          <p class="review-text">"The espresso here transported me back to a misty morning in Salento. Exceptional
+            balance of terroir and craft, unlike anything I've tasted in New York."</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">SR</div>
+            <div>
+              <p class="reviewer-name">Sofia Reyes</p>
+              <p class="reviewer-role">Food Critic, Bogota</p>
+            </div>
+          </div>
+        </div>
+        <div class="review-card fade-up d1">
+          <div class="review-quote">"</div>
+          <div class="stars"><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg></div>
+          <p class="review-text">"I've traveled across three continents for a great cup. Andean Brews stands alone. The
+            cold brew is genuinely life-changing."</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">JW</div>
+            <div>
+              <p class="reviewer-name">James Whitfield</p>
+              <p class="reviewer-role">Coffee Enthusiast, London</p>
+            </div>
+          </div>
+        </div>
+        <div class="review-card fade-up d1">
+          <div class="review-quote">"</div>
+          <div class="stars"><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg></div>
+          <p class="review-text">"The ambiance, the service, and that Iced Caramel. I come here every time I visit. It's
+            curated excellence."</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">PN</div>
+            <div>
+              <p class="reviewer-name">Priya Nair</p>
+              <p class="reviewer-role">Architect, Mumbai</p>
+            </div>
+          </div>
+        </div>
+        <div class="review-card fade-up d1">
+          <div class="review-quote">"</div>
+          <div class="stars"><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg><svg fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg></div>
+          <p class="review-text">"Shot an entire project here. The light, the aroma, the cappuccino art. It's the most
+            visually striking cafe I've ever worked in."</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">MC</div>
+            <div>
+              <p class="reviewer-name">Marcus Chen</p>
+              <p class="reviewer-role">Photographer, New York</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-logo">
+            <div class="icon">AB</div><span class="footer-brand-name">Andean Brews</span>
+          </div>
+          <p class="footer-desc">Born in the highlands of the Andes. Every cup is a journey through altitude-grown
+            beans, crafted with passion.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon" aria-label="Instagram"><svg fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg></a>
+            <a href="#" class="social-icon" aria-label="Facebook"><svg fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hours</h4>
+          <ul>
+            <li><span>Mon-Fri 7am-10pm</span></li>
+            <li><span>Saturday 8am-11pm</span></li>
+            <li><span>Sunday 9am-9pm</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Andean Brews. All rights reserved.</p>
+        <p>Crafted with ☕ passion</p>
+      </div>
+    </div>
+  </footer>
   <script>
-    const navbar=document.getElementById('navbar');
-    window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60));
-    document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('mobile-menu').classList.toggle('open'));
-    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});
-    document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
-</script>
-</body></html>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+    document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('open'));
+    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }), { threshold: .1 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+
+</html>

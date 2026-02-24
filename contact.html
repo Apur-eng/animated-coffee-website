@@ -1,106 +1,690 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Contact - Andean Brews</title>
-  <meta name="description" content="Get in touch with Andean Brews. Reserve a table, ask about events, or simply say hello."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --dark:#0d0505;--dark2:#1a0a0a;--brown:#2d1515;--brown2:#4b2e2e;--brown3:#8b5555;--gold:#c9a84c;--text:#f0e0e0;--text2:#dbbfbf;--text3:#c49898; }
-    html { scroll-behavior: smooth; }
-    body { font-family:'Poppins',sans-serif; background:var(--dark2); color:var(--text); overflow-x:hidden; }
-    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--brown2);border-radius:3px}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;transition:background .5s,padding .4s,box-shadow .4s}
-    nav.scrolled{background:rgba(13,5,5,.96);backdrop-filter:blur(12px);padding:.85rem 4rem;box-shadow:0 2px 32px rgba(0,0,0,.5)}
-    .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
-    .nav-logo-icon{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--brown3));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:#fff}
-    .nav-logo-text{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);transition:color .3s}
-    .nav-logo:hover .nav-logo-text{color:var(--gold)}
-    .nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
-    .nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,224,224,.8);text-decoration:none;position:relative;transition:color .3s}
-    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
-    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
-    .nav-links a:hover::after,.nav-links a.active::after{width:100%}
-    .nav-cta{padding:.5rem 1.3rem!important;border-radius:999px;border:1px solid var(--gold);color:var(--gold)!important;transition:background .3s,color .3s!important}
-    .nav-cta::after{display:none!important}
-    .nav-cta:hover{background:var(--gold)!important;color:var(--dark)!important}
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-    .hamburger span{display:block;width:24px;height:2px;background:var(--text)}
-    .mobile-menu{display:none;flex-direction:column;gap:1.2rem;background:rgba(13,5,5,.98);border-top:1px solid var(--brown);padding:1.5rem 2rem}
-    .mobile-menu.open{display:flex}
-    .mobile-menu a{font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);text-decoration:none}
-    .fade-up{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
-    .fade-up.visible{opacity:1;transform:translateY(0)}
-    .fade-up.d1{transition-delay:.1s}.fade-up.d2{transition-delay:.2s}.fade-up.d3{transition-delay:.3s}.fade-up.d4{transition-delay:.4s}
-    footer{background:var(--dark);border-top:1px solid var(--brown);padding:4rem 2rem 2rem}
-    .footer-inner{max-width:1200px;margin:0 auto}
-    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
-    .footer-brand-logo{display:flex;align-items:center;gap:.75rem;margin-bottom:1.1rem}
-    .footer-brand-logo .icon{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--brown3));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;color:#fff}
-    .footer-brand-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text)}
-    .footer-desc{font-size:.8rem;color:var(--brown3);line-height:1.75;max-width:280px;margin-bottom:1.2rem}
-    .footer-socials{display:flex;gap:.75rem}
-    .social-icon{width:34px;height:34px;border-radius:50%;border:1px solid var(--brown2);display:flex;align-items:center;justify-content:center;color:var(--brown3);text-decoration:none;transition:border-color .3s,color .3s}
-    .social-icon:hover{border-color:var(--gold);color:var(--gold)}
-    .social-icon svg{width:14px;height:14px}
-    .footer-col h4{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text);margin-bottom:1.2rem}
-    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
-    .footer-col ul li a,.footer-col ul li span{font-size:.82rem;color:var(--brown3);text-decoration:none;transition:color .3s}
-    .footer-col ul li a:hover{color:var(--gold)}
-    .footer-bottom{border-top:1px solid var(--brown);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center}
-    .footer-bottom p{font-size:.75rem;color:var(--brown2)}
-    @media(max-width:900px){nav{padding:1.2rem 2rem}nav.scrolled{padding:.75rem 2rem}.nav-links{display:none}.hamburger{display:flex}.footer-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:600px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:.5rem;text-align:center}}
 
-    main{padding-top:7rem;padding-bottom:6rem}
-    .page-header{text-align:center;padding:3rem 2rem 4rem}
-    .eyebrow{font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem;display:block}
-    .page-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:700;color:var(--text);margin-bottom:1.2rem}
-    .divider{width:48px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 1.25rem}
-    .page-sub{font-size:.9rem;color:var(--brown3);max-width:440px;margin:0 auto;line-height:1.8}
-    .contact-section{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:3fr 2fr;gap:2rem;align-items:start}
-    .form-card{position:relative;background:linear-gradient(to bottom,var(--brown),var(--dark2));border:1px solid rgba(75,46,46,.4);border-radius:1.5rem;padding:2.5rem 2.5rem 2.8rem;overflow:hidden;animation:glowPulse 4s ease-in-out infinite}
-    @keyframes glowPulse{0%,100%{box-shadow:0 0 40px rgba(201,168,76,.1)}50%{box-shadow:0 0 70px rgba(201,168,76,.22)}}
-    .form-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--text);margin-bottom:2rem}
-    .form-group{margin-bottom:1.4rem}
-    label{display:block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brown3);margin-bottom:.5rem}
-    input,textarea{width:100%;background:var(--dark);border:1px solid var(--brown2);border-radius:.85rem;padding:.9rem 1.1rem;font-family:'Poppins',sans-serif;font-size:.88rem;color:var(--text);outline:none;transition:border-color .3s;-webkit-appearance:none}
-    input::placeholder,textarea::placeholder{color:var(--brown2)}
-    input:focus,textarea:focus{border-color:var(--gold)}
-    textarea{resize:none;height:130px}
-    .submit-btn{width:100%;padding:1rem;border-radius:.85rem;border:none;background:linear-gradient(135deg,var(--gold),#a07030);color:var(--dark);font-family:'Poppins',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:transform .3s,box-shadow .3s;margin-top:.5rem}
-    .submit-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,168,76,.35)}
-    .success-msg{display:none;text-align:center;padding:3rem 0}
-    .success-msg.show{display:block}
-    .form-inner.hidden{display:none}
-    .success-icon{font-size:3.5rem;margin-bottom:1rem}
-    .success-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text);margin-bottom:.75rem}
-    .success-sub{font-size:.85rem;color:var(--brown3)}
-    .right-col{display:flex;flex-direction:column;gap:1.5rem}
-    .side-card{background:linear-gradient(to bottom,var(--brown),var(--dark2));border:1px solid rgba(75,46,46,.4);border-radius:1.2rem;padding:1.6rem 1.8rem}
-    .side-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text);margin-bottom:.5rem}
-    .side-sub{font-size:.78rem;color:var(--brown3);line-height:1.65;margin-bottom:1.2rem}
-    .social-list{display:flex;flex-direction:column;gap:.6rem}
-    .social-row{display:flex;align-items:center;gap:.75rem;padding:.6rem .7rem;border-radius:.75rem;text-decoration:none;transition:background .3s}
-    .social-row:hover{background:rgba(45,21,21,.8)}
-    .s-icon{width:34px;height:34px;border-radius:50%;border:1px solid var(--brown2);display:flex;align-items:center;justify-content:center;color:var(--brown3);flex-shrink:0;transition:border-color .3s,color .3s}
-    .s-icon svg{width:14px;height:14px}
-    .social-row:hover .s-icon{border-color:var(--gold);color:var(--gold)}
-    .social-handle{font-size:.82rem;color:var(--text3);flex:1}
-    .social-name{font-size:.7rem;color:var(--brown2)}
-    .newsletter-row{display:flex;gap:.5rem}
-    .newsletter-row input{flex:1;border-radius:.75rem;padding:.7rem .9rem}
-    .newsletter-btn{padding:.7rem 1rem;border-radius:.75rem;border:none;background:linear-gradient(135deg,var(--gold),#a07030);color:var(--dark);font-weight:600;font-size:.72rem;cursor:pointer;white-space:nowrap;transition:transform .3s}
-    .newsletter-btn:hover{transform:scale(1.04)}
-    @media(max-width:900px){.contact-section{grid-template-columns:1fr}}
-</style>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Contact - Andean Brews</title>
+  <meta name="description"
+    content="Get in touch with Andean Brews. Reserve a table, ask about events, or simply say hello." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --dark: #0d0505;
+      --dark2: #1a0a0a;
+      --brown: #2d1515;
+      --brown2: #4b2e2e;
+      --brown3: #8b5555;
+      --gold: #c9a84c;
+      --text: #f0e0e0;
+      --text2: #dbbfbf;
+      --text3: #c49898;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark2);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--dark)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--brown2);
+      border-radius: 3px
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 4rem;
+      transition: background .5s, padding .4s, box-shadow .4s
+    }
+
+    nav.scrolled {
+      background: rgba(13, 5, 5, .96);
+      backdrop-filter: blur(12px);
+      padding: .85rem 4rem;
+      box-shadow: 0 2px 32px rgba(0, 0, 0, .5)
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      text-decoration: none
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--brown3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .8rem;
+      color: #fff
+    }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      transition: color .3s
+    }
+
+    .nav-logo:hover .nav-logo-text {
+      color: var(--gold)
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(240, 224, 224, .8);
+      text-decoration: none;
+      position: relative;
+      transition: color .3s
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width .3s
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold)
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%
+    }
+
+    .nav-cta {
+      padding: .5rem 1.3rem !important;
+      border-radius: 999px;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      transition: background .3s, color .3s !important
+    }
+
+    .nav-cta::after {
+      display: none !important
+    }
+
+    .nav-cta:hover {
+      background: var(--gold) !important;
+      color: var(--dark) !important
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text)
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 1.2rem;
+      background: rgba(13, 5, 5, .98);
+      border-top: 1px solid var(--brown);
+      padding: 1.5rem 2rem
+    }
+
+    .mobile-menu.open {
+      display: flex
+    }
+
+    .mobile-menu a {
+      font-size: .85rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text2);
+      text-decoration: none
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .fade-up.d1 {
+      transition-delay: .1s
+    }
+
+    .fade-up.d2 {
+      transition-delay: .2s
+    }
+
+    .fade-up.d3 {
+      transition-delay: .3s
+    }
+
+    .fade-up.d4 {
+      transition-delay: .4s
+    }
+
+    footer {
+      background: var(--dark);
+      border-top: 1px solid var(--brown);
+      padding: 4rem 2rem 2rem
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem
+    }
+
+    .footer-brand-logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.1rem
+    }
+
+    .footer-brand-logo .icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--brown3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .75rem;
+      color: #fff
+    }
+
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text)
+    }
+
+    .footer-desc {
+      font-size: .8rem;
+      color: var(--brown3);
+      line-height: 1.75;
+      max-width: 280px;
+      margin-bottom: 1.2rem
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: .75rem
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--brown2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown3);
+      text-decoration: none;
+      transition: border-color .3s, color .3s
+    }
+
+    .social-icon:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .social-icon svg {
+      width: 14px;
+      height: 14px
+    }
+
+    .footer-col h4 {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 1.2rem
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem
+    }
+
+    .footer-col ul li a,
+    .footer-col ul li span {
+      font-size: .82rem;
+      color: var(--brown3);
+      text-decoration: none;
+      transition: color .3s
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--gold)
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--brown);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .footer-bottom p {
+      font-size: .75rem;
+      color: var(--brown2)
+    }
+
+    @media(max-width:900px) {
+      nav {
+        padding: 1.2rem 2rem
+      }
+
+      nav.scrolled {
+        padding: .75rem 2rem
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .hamburger {
+        display: flex
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:600px) {
+      .footer-grid {
+        grid-template-columns: 1fr
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: .5rem;
+        text-align: center
+      }
+    }
+
+    main {
+      padding-top: 7rem;
+      padding-bottom: 6rem
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 3rem 2rem 4rem
+    }
+
+    .eyebrow {
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .85rem;
+      display: block
+    }
+
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.2rem
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 1.25rem
+    }
+
+    .page-sub {
+      font-size: .9rem;
+      color: var(--brown3);
+      max-width: 440px;
+      margin: 0 auto;
+      line-height: 1.8
+    }
+
+    .contact-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 2rem;
+      align-items: start
+    }
+
+    .form-card {
+      position: relative;
+      background: linear-gradient(to bottom, var(--brown), var(--dark2));
+      border: 1px solid rgba(75, 46, 46, .4);
+      border-radius: 1.5rem;
+      padding: 2.5rem 2.5rem 2.8rem;
+      overflow: hidden;
+      animation: glowPulse 4s ease-in-out infinite
+    }
+
+    @keyframes glowPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 40px rgba(201, 168, 76, .1)
+      }
+
+      50% {
+        box-shadow: 0 0 70px rgba(201, 168, 76, .22)
+      }
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--text);
+      margin-bottom: 2rem
+    }
+
+    .form-group {
+      margin-bottom: 1.4rem
+    }
+
+    label {
+      display: block;
+      font-size: .62rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--brown3);
+      margin-bottom: .5rem
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      background: var(--dark);
+      border: 1px solid var(--brown2);
+      border-radius: .85rem;
+      padding: .9rem 1.1rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: .88rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color .3s;
+      -webkit-appearance: none;
+      appearance: none
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--brown2)
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--gold)
+    }
+
+    textarea {
+      resize: none;
+      height: 130px
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      border-radius: .85rem;
+      border: none;
+      background: linear-gradient(135deg, var(--gold), #a07030);
+      color: var(--dark);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: .82rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+      margin-top: .5rem
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(201, 168, 76, .35)
+    }
+
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 3rem 0
+    }
+
+    .success-msg.show {
+      display: block
+    }
+
+    .form-inner.hidden {
+      display: none
+    }
+
+    .success-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem
+    }
+
+    .success-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: .75rem
+    }
+
+    .success-sub {
+      font-size: .85rem;
+      color: var(--brown3)
+    }
+
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem
+    }
+
+    .side-card {
+      background: linear-gradient(to bottom, var(--brown), var(--dark2));
+      border: 1px solid rgba(75, 46, 46, .4);
+      border-radius: 1.2rem;
+      padding: 1.6rem 1.8rem
+    }
+
+    .side-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: .5rem
+    }
+
+    .side-sub {
+      font-size: .78rem;
+      color: var(--brown3);
+      line-height: 1.65;
+      margin-bottom: 1.2rem
+    }
+
+    .social-list {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem
+    }
+
+    .social-row {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .6rem .7rem;
+      border-radius: .75rem;
+      text-decoration: none;
+      transition: background .3s
+    }
+
+    .social-row:hover {
+      background: rgba(45, 21, 21, .8)
+    }
+
+    .s-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--brown2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown3);
+      flex-shrink: 0;
+      transition: border-color .3s, color .3s
+    }
+
+    .s-icon svg {
+      width: 14px;
+      height: 14px
+    }
+
+    .social-row:hover .s-icon {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .social-handle {
+      font-size: .82rem;
+      color: var(--text3);
+      flex: 1
+    }
+
+    .social-name {
+      font-size: .7rem;
+      color: var(--brown2)
+    }
+
+    .newsletter-row {
+      display: flex;
+      gap: .5rem
+    }
+
+    .newsletter-row input {
+      flex: 1;
+      border-radius: .75rem;
+      padding: .7rem .9rem
+    }
+
+    .newsletter-btn {
+      padding: .7rem 1rem;
+      border-radius: .75rem;
+      border: none;
+      background: linear-gradient(135deg, var(--gold), #a07030);
+      color: var(--dark);
+      font-weight: 600;
+      font-size: .72rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform .3s
+    }
+
+    .newsletter-btn:hover {
+      transform: scale(1.04)
+    }
+
+    @media(max-width:900px) {
+      .contact-section {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
 </head>
+
 <body>
   <nav id="navbar">
-    <a href="index.html" class="nav-logo"><div class="nav-logo-icon">AB</div><span class="nav-logo-text">Andean Brews</span></a>
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">AB</div><span class="nav-logo-text">Andean Brews</span>
+    </a>
     <ul class="nav-links">
       <li><a href="index.html" class="">Home</a></li>
       <li><a href="about.html" class="">About</a></li>
@@ -117,7 +701,8 @@
       <span class="eyebrow fade-up">Get In Touch</span>
       <h1 class="page-title fade-up d1">Let's Connect</h1>
       <div class="divider fade-up d1"></div>
-      <p class="page-sub fade-up d2">Reserve a table, enquire about events, or simply say hello. We'd love to hear from you.</p>
+      <p class="page-sub fade-up d2">Reserve a table, enquire about events, or simply say hello. We'd love to hear from
+        you.</p>
     </div>
     <div class="contact-section">
       <div class="form-card fade-up">
@@ -129,9 +714,12 @@
         <div class="form-inner" id="form-inner">
           <h2 class="form-title">Send a Message</h2>
           <form id="contact-form" novalidate>
-            <div class="form-group"><label for="name">Full Name</label><input id="name" type="text" placeholder="Sofia Reyes" required/></div>
-            <div class="form-group"><label for="email">Email Address</label><input id="email" type="email" placeholder="hello@example.com" required/></div>
-            <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="I'd love to reserve a table for two on Friday evening..." required></textarea></div>
+            <div class="form-group"><label for="name">Full Name</label><input id="name" type="text"
+                placeholder="Sofia Reyes" required /></div>
+            <div class="form-group"><label for="email">Email Address</label><input id="email" type="email"
+                placeholder="hello@example.com" required /></div>
+            <div class="form-group"><label for="message">Message</label><textarea id="message"
+                placeholder="I'd love to reserve a table for two on Friday evening..." required></textarea></div>
             <button type="submit" class="submit-btn">Send Message</button>
           </form>
         </div>
@@ -141,44 +729,89 @@
           <h3 class="side-title">Follow Us</h3>
           <p class="side-sub">Stay updated with seasonal menus, events, and behind-the-scenes moments.</p>
           <div class="social-list">
-            <a href="#" class="social-row"><div class="s-icon"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div><span class="social-handle">@andeanbrews</span><span class="social-name">Instagram</span></a>
-            <a href="#" class="social-row"><div class="s-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div><span class="social-handle">hello@andeanbrews.com</span><span class="social-name">Email</span></a>
+            <a href="#" class="social-row">
+              <div class="s-icon"><svg fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg></div><span class="social-handle">@andeanbrews</span><span class="social-name">Instagram</span>
+            </a>
+            <a href="#" class="social-row">
+              <div class="s-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg></div><span class="social-handle">hello@andeanbrews.com</span><span
+                class="social-name">Email</span>
+            </a>
           </div>
         </div>
         <div class="side-card fade-up d2">
           <h3 class="side-title">Stay in the Loop</h3>
           <p class="side-sub">Monthly brew guides, seasonal menus and exclusive events. No spam, ever.</p>
           <div class="newsletter-row">
-            <input type="email" placeholder="your@email.com" id="newsletter-email"/>
+            <input type="email" placeholder="your@email.com" id="newsletter-email" />
             <button class="newsletter-btn" onclick="handleNewsletter()">Join</button>
           </div>
-          <p id="newsletter-msg" style="font-size:.75rem;color:var(--gold);margin-top:.75rem;display:none">You're on the list. Welcome to the highlands!</p>
+          <p id="newsletter-msg" style="font-size:.75rem;color:var(--gold);margin-top:.75rem;display:none">You're on the
+            list. Welcome to the highlands!</p>
         </div>
       </div>
     </div>
   </main>
-  <footer><div class="footer-inner"><div class="footer-grid">
-    <div>
-      <div class="footer-brand-logo"><div class="icon">AB</div><span class="footer-brand-name">Andean Brews</span></div>
-      <p class="footer-desc">Born in the highlands of the Andes. Every cup is a journey through altitude-grown beans, crafted with passion.</p>
-      <div class="footer-socials">
-        <a href="#" class="social-icon" aria-label="Instagram"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-        <a href="#" class="social-icon" aria-label="Facebook"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-logo">
+            <div class="icon">AB</div><span class="footer-brand-name">Andean Brews</span>
+          </div>
+          <p class="footer-desc">Born in the highlands of the Andes. Every cup is a journey through altitude-grown
+            beans, crafted with passion.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon" aria-label="Instagram"><svg fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg></a>
+            <a href="#" class="social-icon" aria-label="Facebook"><svg fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hours</h4>
+          <ul>
+            <li><span>Mon-Fri 7am-10pm</span></li>
+            <li><span>Saturday 8am-11pm</span></li>
+            <li><span>Sunday 9am-9pm</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Andean Brews. All rights reserved.</p>
+        <p>Crafted with ☕ passion</p>
       </div>
     </div>
-    <div class="footer-col"><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="footer-col"><h4>Hours</h4><ul><li><span>Mon-Fri 7am-10pm</span></li><li><span>Saturday 8am-11pm</span></li><li><span>Sunday 9am-9pm</span></li></ul></div>
-  </div><div class="footer-bottom"><p>2026 Andean Brews. All rights reserved.</p><p>Crafted with passion</p></div></div></footer>
+  </footer>
   <script>
-    
-    const navbar=document.getElementById('navbar');
-    window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60));
-    document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('mobile-menu').classList.toggle('open'));
-    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});
-    document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 
-    document.getElementById('contact-form').addEventListener('submit',e=>{e.preventDefault();document.getElementById('form-inner').classList.add('hidden');document.getElementById('success-msg').classList.add('show');});
-    function handleNewsletter(){const e=document.getElementById('newsletter-email');if(e.value&&e.value.includes('@')){document.getElementById('newsletter-msg').style.display='block';e.value='';}}
-    document.getElementById('newsletter-email').addEventListener('keydown',e=>{if(e.key==='Enter')handleNewsletter();});
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+    document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('open'));
+    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }), { threshold: .1 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    document.getElementById('contact-form').addEventListener('submit', e => { e.preventDefault(); document.getElementById('form-inner').classList.add('hidden'); document.getElementById('success-msg').classList.add('show'); });
+    function handleNewsletter() { const e = document.getElementById('newsletter-email'); if (e.value && e.value.includes('@')) { document.getElementById('newsletter-msg').style.display = 'block'; e.value = ''; } }
+    document.getElementById('newsletter-email').addEventListener('keydown', e => { if (e.key === 'Enter') handleNewsletter(); });
   </script>
-</body></html>
+</body>
+
+</html>
